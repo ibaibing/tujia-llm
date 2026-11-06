@@ -1,0 +1,11 @@
+Usage boundaries — tujia-llm
+
+Code in this repository is MIT-licensed (see LICENSE).
+
+Model weights — LoRA adapters and merged or quantized checkpoints — are provided
+for research use only. No rights are granted to the training corpora, the source
+recordings, or their speakers, and none of that material is distributed here.
+
+The base model (Qwen3-8B-Instruct-2507 / Qwen3-4B-Instruct-2507) keeps its own
+license and must retain its attribution wherever these weights or results derived
+from them are redistributed or published.
