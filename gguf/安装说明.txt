@@ -1,0 +1,100 @@
+土家语模型 tujia-llm v0.2 —— Windows 安装测试说明
+====================================================
+
+适用：Windows 11，32GB 内存，无独立显卡（纯 CPU 可跑）
+模型：Q4_K_M，4.7 GB，运行时占用约 7 GB 内存
+状态：research preview（研究预览版，输出仅供草稿，需人工校对）
+
+
+一、文件清单
+------------
+tujia-llm-8b-v0.2-Q4_K_M.gguf   4.7 GB   模型权重
+Modelfile                        提示词模板（必须和 gguf 放同一目录）
+SHA256SUMS                       校验值
+安装说明.txt                      本文件
+
+建议先全部复制到本地磁盘（例如 D:\tujia），不要直接在网络盘上运行。
+
+
+二、安装 Ollama
+--------------
+1. 打开 https://ollama.com/download/windows
+2. 下载并安装 OllamaSetup.exe
+3. 安装后右下角会出现 Ollama 图标，确认它正在运行
+
+无显卡不需要任何额外配置，Ollama 会自动使用 CPU。
+
+
+三、创建并运行模型
+------------------
+1. 打开 PowerShell 或 CMD
+2. 进入文件所在目录：
+
+   cd /d D:\tujia
+
+3. 创建模型（只需一次，约 10–60 秒）：
+
+   ollama create tujia -f Modelfile
+
+4. 测试查词：
+
+   ollama run tujia "「酒」用土家语怎么说？"
+
+   预期输出：zɤ³⁵；zɤ³⁵
+
+5. 测试整句：
+
+   ollama run tujia "把这句话翻译成土家语：大家都过好日子。"
+
+   参考输出：xu³⁵ ni⁵⁵ niɛ⁵⁵ kʰa⁵⁵ ɕi⁵⁵ tsʰa³⁵
+   （允许有差异，不要求逐字一致）
+
+
+四、校验文件完整性
+------------------
+在 PowerShell 中执行：
+
+   Get-FileHash .\tujia-llm-8b-v0.2-Q4_K_M.gguf -Algorithm SHA256
+
+应等于 SHA256SUMS 中记录的值：
+ddeed1217180da8010f93bde4620f377c34153fc0c39fb4297ef9beec2a3d843
+
+
+五、如果 Ollama 输出异常
+------------------------
+症状：输出带 思考过程、重复音节、或答非所问。
+
+改用 llama.cpp 直接运行（同样纯 CPU）：
+
+1. 下载 Windows 版 llama.cpp：
+   https://github.com/ggml-org/llama.cpp/releases
+   选择 llama-bXXXX-bin-win-cpu-x64.zip 或 avx2 版本，解压
+
+2. 在解压目录执行：
+
+   llama-completion.exe -m D:\tujia\tujia-llm-8b-v0.2-Q4_K_M.gguf ^
+     -p "<|im_start|>user`n「酒」用土家语怎么说？<|im_end|>`n<|im_start|>assistant`n<think>`n`n`n`n" ^
+     -n 24 --temp 0 -ngl 0 -no-cnv
+
+   注意：必须保留结尾的空 think 块（<think> 后 4 个换行），
+   否则输出质量会明显下降。
+
+
+六、速度预期（纯 CPU）
+---------------------
+近三年 Ryzen 5/7 或 i5/i7 + DDR4/DDR5：约 6–10 token/秒
+较老平台：约 4–6 token/秒
+一句话通常 4–10 秒；首次加载模型需要 5–15 秒。
+
+批量翻译不现实（100 句要几十分钟），适合单条查询和人工校对。
+
+
+七、已知限制
+------------
+1. 查词严格命中率约 5.8%，倾向于输出多个候选（如 zɤ³⁵；zɤ⁵⁵）
+2. 长句可能丢失后半段或出现重复
+3. 低频名词（斗笠、蓑衣）容易胡造
+4. 只覆盖北部方言·龙山标准音；保靖、泸溪不适用
+5. 未收录词不会拒答，会硬造音节
+
+更多信息见 tujia-llm 仓库的 MODEL_CARD.md 与 docs/eval-v0.2.md。

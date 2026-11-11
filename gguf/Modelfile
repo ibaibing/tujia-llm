@@ -1,0 +1,15 @@
+FROM ./tujia-llm-8b-v0.2-Q4_K_M.gguf
+
+# The model was trained with an empty, already-closed think block.
+# Closing it in the prompt keeps Ollama from entering thinking mode.
+TEMPLATE """<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+<think>
+
+</think>
+
+"""
+
+PARAMETER temperature 0
+PARAMETER stop "<|im_end|>"

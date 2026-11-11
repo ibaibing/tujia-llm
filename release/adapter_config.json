@@ -1,0 +1,15 @@
+{
+  "fine_tune_type": "lora",
+  "num_layers": 16,
+  "model": "Qwen/Qwen3-8B",
+  "lora_parameters": {
+    "rank": 16,
+    "dropout": 0.05,
+    "scale": 32.0
+  },
+  "mask_prompt": true,
+  "max_seq_length": 512,
+  "iters": 47000,
+  "learning_rate": 1e-05,
+  "batch_size": 4
+}

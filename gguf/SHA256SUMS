@@ -1,0 +1,9 @@
+0fc8b99f69b3371477f6dad5a28bdd24119b8456456b2f3d3cef3de6fd630321  tujia-llm-8b-v0.2-f16.gguf
+ddeed1217180da8010f93bde4620f377c34153fc0c39fb4297ef9beec2a3d843  tujia-llm-8b-v0.2-Q4_K_M.gguf
+
+# llama.cpp split shards (same tensor data as the Q4_K_M file above)
+d174f9b40e746e8613d28be34aa49558d374b7628ce3abab92cde74cc45ef8db  tujia-llm-8b-v0.2-Q4_K_M-00001-of-00005.gguf
+c717284f7abd121712eec31fb9b9a67b1af7d7e641b4e2e0277ba571cf6a88de  tujia-llm-8b-v0.2-Q4_K_M-00002-of-00005.gguf
+e7830e686148c927c2e7c37c5395d25bc6c9ce36e8d22f00f0c512c7875365b3  tujia-llm-8b-v0.2-Q4_K_M-00003-of-00005.gguf
+25431e8bf58dc6348b79cc5c1db5057bfe90f79fb51558094643e29fc7256571  tujia-llm-8b-v0.2-Q4_K_M-00004-of-00005.gguf
+a92fdb5a75694a45a9b359cc7a454f0a566086d5090249606cbded2c7ac40b36  tujia-llm-8b-v0.2-Q4_K_M-00005-of-00005.gguf
