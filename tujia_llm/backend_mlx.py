@@ -28,20 +28,20 @@ class MlxBackend:
 
 
 def resolve_adapter(spec: str | None, default_repo: str) -> str:
-    """Accept a local directory, a local file, or a Hugging Face repo id."""
+    """Accept a local directory, a local file, or a Hugging Face repo id.
+
+    Cached snapshots are preferred so repeated runs work offline.
+    """
+    from huggingface_hub import snapshot_download
+
     if spec:
         p = Path(spec).expanduser()
         if p.exists():
             return str(p)
-        from huggingface_hub import snapshot_download
 
-        return snapshot_download(
-            repo_id=spec,
-            allow_patterns=["*.safetensors", "*.json"],
-        )
-    from huggingface_hub import snapshot_download
-
-    return snapshot_download(
-        repo_id=default_repo,
-        allow_patterns=["*.safetensors", "*.json"],
-    )
+    repo = spec or default_repo
+    kwargs = dict(repo_id=repo, allow_patterns=["*.safetensors", "*.json"])
+    try:
+        return snapshot_download(local_files_only=True, **kwargs)
+    except Exception:
+        return snapshot_download(**kwargs)
