@@ -19,8 +19,9 @@ tags:
 The MLX build only runs on Apple Silicon. This GGUF build runs on Windows, Linux, and
 Intel Macs through llama.cpp or Ollama.
 
-**Weights (4.7 GB):** [ModelScope · TujiaNLP/tujia-llm-8b-v0.2-gguf](https://modelscope.cn/models/TujiaNLP/tujia-llm-8b-v0.2-gguf).
-This Hugging Face repository keeps the metadata only; download the `.gguf` from ModelScope.
+**Weights:** this repository hosts the five llama.cpp shards (~1 GB each). ModelScope also
+carries the single 4.7 GB file:
+[ModelScope · TujiaNLP/tujia-llm-8b-v0.2-gguf](https://modelscope.cn/models/TujiaNLP/tujia-llm-8b-v0.2-gguf).
 
 ## Files
 

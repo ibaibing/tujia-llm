@@ -23,7 +23,7 @@ LoRA weights and evaluation for Tujia language generation. First public release:
 |---|---|
 | ModelScope (MLX) | [TujiaNLP/tujia-llm-8b-v0.2](https://modelscope.cn/models/TujiaNLP/tujia-llm-8b-v0.2) |
 | ModelScope (GGUF) | [TujiaNLP/tujia-llm-8b-v0.2-gguf](https://modelscope.cn/models/TujiaNLP/tujia-llm-8b-v0.2-gguf) |
-| Hugging Face | [MLX adapter](https://huggingface.co/TujiaNLP/tujia-llm-8b-v0.2); GGUF repo is metadata only |
+| Hugging Face | [MLX adapter](https://huggingface.co/TujiaNLP/tujia-llm-8b-v0.2) · [GGUF shards](https://huggingface.co/TujiaNLP/tujia-llm-8b-v0.2-gguf) |
 | GitHub Releases | `github.com/ibaibing/tujia-llm/releases` → `tujia-llm-8b-v0.2.tar.gz` |
 | PyPI | `pip install tujia-llm` (Apple Silicon) |
 
